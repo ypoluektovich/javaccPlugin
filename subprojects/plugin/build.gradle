@@ -119,7 +119,7 @@ publishing {
             pom.withXml {
                 asNode().appendNode('name', project.getName())
                 asNode().appendNode('description', 'Provides the ability to use JavaCC with Gradle. Compiles JavaCC files to Java.')
-                asNode().appendNode('url', 'https://github.com/johnmartel/javaccPlugin')
+                asNode().appendNode('url', 'https://github.com/ypoluektovich/javaccPlugin')
                 
                 def license = asNode().appendNode('licenses').appendNode('license')
                 license.appendNode('name', 'The MIT License (MIT)')
@@ -127,9 +127,9 @@ publishing {
                 license.appendNode('distribution', 'repo')
                 
                 def scm = asNode().appendNode('scm')
-                scm.appendNode('url', 'https://github.com/johnmartel/javaccPlugin')
-                scm.appendNode('connection', 'scm:https://johnmartel@github.com/johnmartel/javaccPlugin.git')
-                scm.appendNode('developerConnection', 'scm:git://github.com/johnmartel/javaccPlugin.git')
+                scm.appendNode('url', 'https://github.com/ypoluektovich/javaccPlugin')
+                scm.appendNode('connection', 'scm:https://github.com/ypoluektovich/javaccPlugin.git')
+                scm.appendNode('developerConnection', 'scm:git://github.com/ypoluektovich/javaccPlugin.git')
                 
                 def developer = asNode().appendNode('developers').appendNode('developer')
                 developer.appendNode('id', 'jmartel')
@@ -149,54 +149,26 @@ bintray {
         ext.bintrayApiKey = ''
     }
     
-    if (!project.hasProperty('ossrhUsername')) {
-        ext.ossrhUsername = ''
-    }
-    
-    if (!project.hasProperty('ossrhPassword')) {
-        ext.ossrhPassword = ''
-    }
-    
-    if (!project.hasProperty('releaseVersion')) {
-        ext.releaseVersion = ''
-    }
-    
-    if (!project.hasProperty('gpgPassphrase')) {
-        ext.gpgPassphrase = ''
-    }
-    
     user = bintrayUser
     key = bintrayApiKey
 
     publications = ['maven']
-    dryRun = false
+    dryRun = true
     publish = true
     pkg {
         repo = 'maven'
         name = 'javacc-gradle-plugin'
         desc = 'Provides the ability to use JavaCC via Gradle. If the java plugin is also applied, JavaCompile tasks will depend upon the compileJavacc task.'
-        websiteUrl = 'https://github.com/johnmartel/javaccPlugin'
-        issueTrackerUrl = 'https://github.com/johnmartel/javaccPlugin/issues'
-        vcsUrl = 'https://github.com/johnmartel/javaccPlugin.git'
+        websiteUrl = 'https://github.com/ypoluektovich/javaccPlugin'
+        issueTrackerUrl = 'https://github.com/ypoluektovich/javaccPlugin/issues'
+        vcsUrl = 'https://github.com/ypoluektovich/javaccPlugin.git'
         licenses = ['MIT']
         labels = ['javacc', 'gradle']
         publicDownloadNumbers = true
         
         version {
-            name = releaseVersion
+            name = project.version
             released = new Date()
-            vcsTag = 'javacc-gradle-plugin-' + releaseVersion
-            attributes = ['gradle-plugin': 'ca.coglinc.javacc:ca.coglinc:javacc-gradle-plugin']
-            gpg {
-                sign = true
-                passphrase = gpgPassphrase
-            }
-            mavenCentralSync {
-                sync = true
-                user = ossrhUsername
-                password = ossrhPassword
-                close = '1'
-            }
         }
     }
 }

@@ -1,31 +1,30 @@
-# JavaCC Compiler Plugin for Gradle
+# Status of this repository
 
-[![Build Status](https://travis-ci.org/johnmartel/javaccPlugin.svg)](https://travis-ci.org/johnmartel/javaccPlugin) 
-[![Coverage Status](https://coveralls.io/repos/johnmartel/javaccPlugin/badge.svg?branch=master&service=github)](https://coveralls.io/github/johnmartel/javaccPlugin?branch=master)
+The author of this software is [John Martel](https://github.com/johnmartel/javaccPlugin).
+This repository contains my patches that haven't been integrated into upstream (or never will be).
+I changed some identification strings so that I could safely use the patched versions in my projects,
+but they shouldn't be publicly available without some explicit effort.
+
+I offer no guarantees about maintenance of this fork.
+
+That said...
+
+# JavaCC Compiler Plugin for Gradle
 
 Provides the ability to use [JavaCC](http://javacc.java.net/) via [Gradle](http://www.gradle.org/). If the 'java' plugin is also applied, JavaCompile tasks will depend upon the compileJavacc task.
 
 ## Installation
 
-Simply grab the plugin from Maven Central:
-
 Add the following lines to your `build.gradle` script:
 
-Gradle 2.1+
-```gradle
-plugins {
-  id "ca.coglinc.javacc" version "2.3.1"
-}
-```
-
-Gradle <2.1
 ```gradle
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'https://dl.bintray.com/ypoluektovich/third-party/' }
     }
     dependencies {
-        classpath group: 'ca.coglinc', name: 'javacc-gradle-plugin', version: '2.3.1'
+        classpath group: 'net.yp.thirdparty', name: 'javacc-gradle-plugin', version: '2.3.1+patch.ypoluektovich.1'
     }
 }
 apply plugin: 'ca.coglinc.javacc'

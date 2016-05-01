@@ -2,8 +2,8 @@ allprojects{
     apply plugin: 'eclipse'
     apply plugin: 'idea'
     
-    group = 'ca.coglinc'
-version = '2.4.0-SNAPSHOT'
+    group = 'net.yp.thirdparty'
+    version = '2.3.1+patch.ypoluektovich.1'
 
     repositories {
         mavenCentral()
