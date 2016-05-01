@@ -145,10 +145,10 @@ bintray {
     key = bintrayApiKey
 
     publications = ['maven']
-    dryRun = true
+    dryRun = false
     publish = true
     pkg {
-        repo = 'maven'
+        repo = 'third-party'
         name = 'javacc-gradle-plugin'
         desc = 'Provides the ability to use JavaCC via Gradle. If the java plugin is also applied, JavaCompile tasks will depend upon the compileJavacc task.'
         websiteUrl = 'https://github.com/ypoluektovich/javaccPlugin'
