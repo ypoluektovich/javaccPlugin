@@ -1,5 +1,5 @@
 plugins {
-    id 'com.jfrog.bintray' version '1.5'
+    id 'com.jfrog.bintray' version '1.6'
     id 'com.github.kt3k.coveralls' version '2.4.0'
     id 'checkstyle'
     id 'findbugs'
@@ -141,14 +141,6 @@ publishing {
 }
 
 bintray {
-    if (!project.hasProperty('bintrayUser')) {
-        ext.bintrayUser = ''
-    }
-    
-    if (!project.hasProperty('bintrayApiKey')) {
-        ext.bintrayApiKey = ''
-    }
-    
     user = bintrayUser
     key = bintrayApiKey
 
@@ -169,6 +161,7 @@ bintray {
         version {
             name = project.version
             released = new Date()
+            vcsTag = 'v' + project.version
         }
     }
 }
